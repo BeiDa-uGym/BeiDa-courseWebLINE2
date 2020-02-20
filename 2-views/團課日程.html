@@ -381,7 +381,8 @@
           setEnabled($("#確定報名按鈕"), false);
 
           //location.reload();
-          reloadCourseNeeded = true;        
+          //reloadCourseNeeded = true;        
+          getCourseData(navDataSource); getCourseHistory(courseHistorySource); 
           $("#團課日程Div").show();
           $("#報名表格").hide()
 

@@ -120,7 +120,8 @@
         
     function 報名課程(courseId){
       ///?API=20&UserName=小華&CourseId=U0002&UserId=U722be0c9c9d36e011c0e556bd2047819&PhoneNumber=09XXXXX333
-
+      想報名的courseId = courseId;
+      
       console.log("報名課程", courseId, userId[1],userPhoneNumber);
       要報名的課程 = courseId;
       
@@ -375,17 +376,21 @@
           console.log(responseMsg);
           alert("課程報名失敗，請稍後再試，或洽櫃台人員");
         } else {
-          $("#確定報名按鈕").text("已報名");
-          $("#確定報名按鈕").css("background-color", "grey");                       
-          $("#確定報名按鈕").css("border-style", "none");           
-          setEnabled($("#確定報名按鈕"), false);
+//          $("#確定報名按鈕").text("已報名");
+//          $("#確定報名按鈕").css("background-color", "grey");                       
+//          $("#確定報名按鈕").css("border-style", "none");           
+//          setEnabled($("#確定報名按鈕"), false);
 
           //location.reload();
           //reloadCourseNeeded = true;        
           getCourseData(navDataSource); getCourseHistory(courseHistorySource); 
-          $("#團課日程Div").show();
-          $("#報名表格").hide()
-
+          $("#報名表格").hide();
+          $("#團課日程Div").show();          
+          $("#報名按鈕"+想報名的courseId).text("已報名");  
+          $("#報名按鈕"+想報名的courseId).css("background-color", "grey");                       
+          $("#報名按鈕"+想報名的courseId).css("border-style", "none");  
+          setEnabled($("#報名按鈕"+想報名的courseId), false);          
+          
         }
       } 
       request.send();      

@@ -98,7 +98,6 @@ function getCourseData(data) {
   
   if (loadCourses == false) return 1;
   
-  
   allDataReady = 0;
   readCourses();
 
@@ -119,17 +118,41 @@ function getCourseData(data) {
               "老師時間": courseData[ind][2] + " | " + courseData[ind][3], 
               "課程費用": courseData[ind][5],  
               "課程圖片": 課程圖片Url,
+              "繳費狀況": "未繳費",
+              "繳費狀況顏色": "coral",              
               "url": "2-views/courseDetail.html?courseId=" + courseData[ind][0],
               "section": "A"             
-            };        
+            };   
+            
+            courseMember.forEach(function(course1, index1, array1){
+              //console.log(index1, courseData[ind][0]);
+              if (course1[0]==courseData[ind][0]) {
+                for (var i=1; i< course1.length;i++){
+                  //console.log(course1[i][3]);
+                  if (course1[i][3]== userId[1] && course1[i][1]=="已繳費") {
+                    courseTitle.繳費狀況 = "已繳費";
+                    courseTitle.繳費狀況顏色 = "darkslategray";
+                  }               
+                }
+              }
+            });           
+            
+            
             dataTemp.push(courseTitle);
 
           }
         });
       });
    
-      //console.log(dataTemp);
+      console.log(dataTemp.length);
       data.success(dataTemp);      
+      
+      if (dataTemp.length==0) {
+        $("#報名課程title").text("尚無報名課程");
+      }else {
+        $("#報名課程title").text("已報名課程");
+      }      
+
     }
     
   }, 100);
@@ -168,8 +191,14 @@ function getCourseHistory(data) {
       });
    
       //console.log(dataTemp);
+      data.success( dataTemp);  
       
-      data.success( dataTemp);      
+      if (dataTemp.length==0) {
+        $("#參加過課程title").text("尚無參加過課程");
+      }else {
+        $("#參加過課程title").text("參加過課程");
+      }      
+      
     }
     
   }, 100);

@@ -67,8 +67,10 @@
       updateCourseDetail();
 
       //檢查位置
-      var distance = calcDistance(目前位置經度, 目前位置緯度, 場所位置經度, 場所位置緯度);
-      console.log("aaa",distance);
+      var distance  = calcDistance(目前位置經度, 目前位置緯度, 場所位置經度, 場所位置緯度);
+      var distance1 = calcDistance(目前位置經度, 目前位置緯度, 場所位置1經度, 場所位置1緯度);
+      var distance2 = calcDistance(目前位置經度, 目前位置緯度, 場所位置2經度, 場所位置2緯度);      
+      console.log("距離",distance, distance1, distance2);
 
       //檢查日期時間
       var courseDateArr;
@@ -129,19 +131,19 @@
         }
         
         現在時間=時間切割[0]+":"+時間切割[1];
-        console.log(今天日期, 現在時間);
+        console.log(今天日期, 現在時間==courseDateArr[0]);
         
         if ( (courseDateArr[0]==今天日期) &&
              (現在時間 > courseTimeStart) &&
              (現在時間 < courseTimeEnd) ) {
-          console.log("可以簽到");
+          //console.log("可以簽到");
         } else {
           alert("未到課程日期及時間，不可以簽到");
           return 1;
         }
 
         //檢查距離
-        if (distance > 500) {
+        if ((distance > 500) && (distance1 > 500) && (distance2 > 500)) {
           alert("距離運動中心太遠，不可以簽到");
           return 1;
         }
@@ -210,7 +212,9 @@
           }
         });
         
-        $("#與運動中心距離").text("與運動中心距離: " + distance.toString());  
+        $("#與運動中心距離").text("與運動中心距離(m): " + Math.floor(distance.toString()) + ", " 
+                                                  + Math.floor(distance1.toString()) + ", " 
+                                                  + Math.floor(distance2.toString())  );  
         $("#課程開始時間").text("課程開始時間: "+courseDateArr[0]+" 從 "+courseTimeStart+" 到 "+courseTimeEnd);
       }
 

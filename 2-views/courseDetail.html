@@ -133,10 +133,39 @@
         現在時間=時間切割[0]+":"+時間切割[1];
         console.log(今天日期, 現在時間==courseDateArr[0]);
         
+        // 擴長課程檢查時間前 30 分鐘及結束後 30 分鐘
+        var beforeStart = courseTimeStart.split(":");
+        var extendRange = 30;
+        var deltaMin = parseInt(beforeStart[1]) - extendRange;
+        if (deltaMin < 0) {
+          beforeStart[1] = String(deltaMin+60);
+          beforeStart[0] = String(parseInt(beforeStart[0]) - 1);
+        } else {
+          beforeStart[1] = String(deltaMin);          
+        }
+        if (beforeStart[0].length<2) beforeStart[0] = "0"+beforeStart[0];         
+        if (beforeStart[1].length<2) beforeStart[1] = "0"+beforeStart[1];        
+        var extendStart = beforeStart[0]+":"+beforeStart[1];
+
+        var afterEnd = courseTimeEnd.split(":");
+        var extendRange = 25;
+        var deltaMin = parseInt(afterEnd[1]) + extendRange;
+        if (deltaMin > 59) {
+          afterEnd[1] = String(deltaMin-60);
+          afterEnd[0] = String(parseInt(afterEnd[0]) + 1);
+        } else {
+          afterEnd[1] = String(deltaMin);          
+        }
+        if (afterEnd[0].length<2) afterEnd[0] = "0"+afterEnd[0];         
+        if (afterEnd[1].length<2) afterEnd[1] = "0"+afterEnd[1];           
+        var extendEnd = afterEnd[0]+":"+afterEnd[1];        
+        
         if ( (courseDateArr[0]==今天日期) &&
-             (現在時間 > courseTimeStart) &&
-             (現在時間 < courseTimeEnd) ) {
+          //(現在時間 > courseTimeStart) &&
+          //(現在時間 < courseTimeEnd) ) {
           //console.log("可以簽到");
+          (現在時間 > extendStart) &&
+          (現在時間 < extendEnd) ) {            
         } else {
           alert("未到課程日期及時間，不可以簽到");
           return 1;

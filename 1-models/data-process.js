@@ -132,7 +132,10 @@ function getCourseData(data) {
                   if (course1[i][3]== userId[1] && course1[i][1]=="已繳費") {
                     courseTitle.繳費狀況 = "已繳費";
                     courseTitle.繳費狀況顏色 = "darkslategray";
-                  }               
+                  } else if (course1[i][3]== userId[1] && course1[i][1]=="免費") {
+                    courseTitle.繳費狀況 = "免費";
+                    courseTitle.繳費狀況顏色 = "darkslategray";                    
+                  }
                 }
               }
             });           

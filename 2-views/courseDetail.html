@@ -232,7 +232,14 @@
                 $("#繳費按鈕"+idNum.toString()).css("background-color", "grey");  
                 $("#繳費按鈕"+idNum.toString()).css("border-style", "none");  
                 setEnabled($('#繳費按鈕'+idNum.toString()), false);     
+              } else if (course[i][3]== userId[1] && course[i][1]=="免費") {
+                console.log(course[i][1]);
+                $("#繳費按鈕"+idNum.toString()).text("免費");   
+                $("#繳費按鈕"+idNum.toString()).css("background-color", "grey");  
+                $("#繳費按鈕"+idNum.toString()).css("border-style", "none");  
+                setEnabled($('#繳費按鈕'+idNum.toString()), false);     
               }
+                        
               if (course[i][3]== userId[1] && course[i][2]=="已簽到") {
                 console.log(course[i][2]);
                 $("#簽到按鈕"+idNum.toString()).text("已簽到");   

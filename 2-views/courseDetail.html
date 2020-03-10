@@ -130,8 +130,9 @@
           時間切割[0] = "12";
         }
         
+        if (時間切割[0].length<2) 時間切割[0] = "0"+時間切割[0];
+        if (時間切割[1].length<2) 時間切割[1] = "0"+時間切割[1];        
         現在時間=時間切割[0]+":"+時間切割[1];
-        console.log(今天日期, 現在時間==courseDateArr[0]);
         
         // 擴長課程檢查時間前 30 分鐘及結束後 30 分鐘
         var beforeStart = courseTimeStart.split(":");
@@ -148,7 +149,7 @@
         var extendStart = beforeStart[0]+":"+beforeStart[1];
 
         var afterEnd = courseTimeEnd.split(":");
-        var extendRange = 25;
+        var extendRange = 30;
         var deltaMin = parseInt(afterEnd[1]) + extendRange;
         if (deltaMin > 59) {
           afterEnd[1] = String(deltaMin-60);
@@ -159,6 +160,8 @@
         if (afterEnd[0].length<2) afterEnd[0] = "0"+afterEnd[0];         
         if (afterEnd[1].length<2) afterEnd[1] = "0"+afterEnd[1];           
         var extendEnd = afterEnd[0]+":"+afterEnd[1];        
+        
+        console.log(今天日期, 現在時間, extendStart, extendEnd);
         
         if ( (courseDateArr[0]==今天日期) &&
           //(現在時間 > courseTimeStart) &&

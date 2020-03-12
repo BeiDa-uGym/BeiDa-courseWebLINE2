@@ -9,15 +9,31 @@
 
   <script src="https://kendo.cdn.telerik.com/2020.1.114/js/jquery.min.js"></script>
   <script src="https://kendo.cdn.telerik.com/2020.1.114/js/kendo.all.min.js"></script>
-  
+    
 </head>
 <body>
   <div data-role="view" data-init="initData"  data-title="團課日程" style="text-align: center;font-family: 'Noto Sans TC'" data-use-native-scrolling="true">
-    <div id="團課日程Div">
+<!--
+    <header data-role="header">
+      <div data-role="navbar" id="normal" class="km-accent">
+        <a data-align="left" data-role="button" onclick="app.navigate('#:back')" data-rel="" data-icon=""></a>           
+        <a data-align="right" data-role="button" href="#forms" data-rel="" data-icon="contacts"></a>       
+        <span data-role="view-title"></span>   
+      </div>
+    </header>   
+-->
+    <a id="查看課表header" class="km-primary km-button-center" style="width:100%; font-size: 18px; color: white; margin-left: 0px; " data-role="button" onclick="查看及收起課表()"
+     >查看課表</a>
+     <div id="課表圖片Div" style="display:none">
+       <img id="課表圖片" src="750x1334.png" width="100%"/>
+       <a class="km-primary km-button-center" style="width:100%; font-size: 18px; color: white; margin-left: 0px; " data-role="button" onclick="查看及收起課表()">收起課表</a>  
+     </div>        
+      
+    <div id="團課日程Div">         
       <div id="calendar"></div>
       
       <div style="height: 20px"></div>
-      <button class="reply km-primary km-button-left" style="color: white; margin-left: 20px; background-color: teal; border-color:teal" data-role="button" onclick="查看所有課程()" id="查看所有課程按鈕">查看所有課程</button> 
+      <button class="reply km-primary km-button-left" style="color: white; margin-left: 20px; background-color: red; border-color:teal" data-role="button" onclick="查看所有課程()" id="查看所有課程按鈕">查看所有課程</button> 
       
       <button class="reply km-primary km-button-right" style="color: white; margin-right: 20px; background-color: teal; border-color:teal" data-role="button" onclick="顯示系列課程()" id="顯示系列課程按鈕">顯示系列課程</button> 
                 
@@ -84,6 +100,7 @@
     console.log("enter 團課日程.html");
     
     系列課程展開 = false;
+    課表狀態    ="收起";
         
     function initData(e) {
       console.log("initData");
@@ -396,6 +413,21 @@
       request.send();      
       
     }
+    
+    function 查看及收起課表(){
+      console.log("查看及收起課表");
+      if(課表狀態=="收起"){
+        課表狀態="查看";
+        $("#查看課表header").text("收起課表");
+        $("#課表圖片Div").show();
+      } else {
+         課表狀態="收起";
+        $("#查看課表header").text("查看課表");
+        $("#課表圖片Div").hide();       
+      }
+      
+    }
+    
   </script>
 
 

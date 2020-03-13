@@ -25,7 +25,7 @@
     <a id="查看課程表header" class="km-primary km-button-center" style="width:100%; font-size: 18px; color: white; margin-left: 0px; " data-role="button" onclick="查看及收起課程表()"
      >查看課程表 ▼</a>
      <div id="課表圖片Div" style="display:none">
-       <img id="課表圖片" src="索取課程表.png" width="100%"/>
+       <img id="課表圖片" src="索取課程表.png" width="100%" onerror="this.src='索取課程表.png'"/>
        <a class="km-primary km-button-center" style="width:100%; font-size: 18px; color: white; margin-left: 0px; " data-role="button" onclick="查看及收起課程表()">收起課程表 ▲</a>  
      </div>        
       
@@ -43,9 +43,7 @@
         <ul id="courseTable"></ul>        
       </div> 
     </div>
-    
-
-            
+              
     <div id="報名表格" style="display: none; text-align: left; margin-left: 20px" > 
       <img id="報名表格課程圖片" src="picPlaceholder.png" width="150" height="150" style="float:left;margin-top:10px"/> 
       <br><br><br><br><br><br><br><br><br>    
@@ -101,6 +99,8 @@
     
     系列課程展開 = false;
     課表狀態    ="收起";
+    
+    讀取課表圖片();
         
     function initData(e) {
       console.log("initData");
@@ -429,7 +429,7 @@
       request.onload = function() {
         var responseMsg = JSON.parse(this.response);
         console.log(responseMsg);         
-        $("#課表圖片").attr("src", responseMsg)
+        $("#課表圖片").attr("src", responseMsg);
       } 
       request.send();        
     }

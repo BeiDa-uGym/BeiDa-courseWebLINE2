@@ -414,6 +414,27 @@
       
     }
     
+    function 讀取課表圖片() {
+      // call API:15 =========================================================================
+      var request = new XMLHttpRequest();
+      var paramToSend = "?API=15";
+      
+      console.log(paramToSend); 
+      if (useLocalAPIs) {
+        request.open('GET', 'http://localhost:5000' + paramToSend, true);
+      } else {
+        request.open('GET', apiSite +paramToSend, true);
+      }      
+
+      request.onload = function() {
+        var responseMsg = JSON.parse(this.response);
+        console.log(responseMsg);         
+        $("#課表圖片").attr("src", responseMsg)
+      } 
+      request.send();        
+    }
+    
+    
     function 查看及收起課程表(){
       console.log("查看及收起課程表");
       if(課表狀態=="收起"){

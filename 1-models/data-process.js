@@ -185,7 +185,7 @@ function getCourseHistory(data) {
               "老師時間": item[2] + " | " + item[3], 
               "課程費用": item[5], 
               "課程圖片": 課程圖片Url,              
-              "url": "2-views/courseDetail.html?courseId=" + courseData[ind][0],
+              "url": "2-views/courseDetail.html?courseId=" + courseHistory[ind][0],
               "section": "A"             
             };
             dataTemp.push(courseTitle);

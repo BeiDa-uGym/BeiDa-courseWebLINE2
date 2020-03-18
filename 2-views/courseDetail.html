@@ -176,9 +176,11 @@
         }
 
         //檢查距離
-        distance  = distance  || 100000; //convert NaN to a long distance
-        distance1 = distance1 || 100000;
-        distance2 = distance2 || 100000;        
+        //以下方法參考 https://stackoverflow.com/questions/7540397/convert-nan-to-0-in-javascript
+        distance  = ++distance  || 100000; //convert NaN to a long distance
+        distance1 = ++distance1 || 100000; //需要加上 ++，否則 0 也會被當作 0 而變成 100000
+        distance2 = ++distance2 || 100000;  
+        console.log(distance, distance1, distance2);
         if ((distance > 1000) && (distance1 > 1000) && (distance2 > 1000)) {
           alert("距離運動中心太遠，不可以簽到");
           return 1;

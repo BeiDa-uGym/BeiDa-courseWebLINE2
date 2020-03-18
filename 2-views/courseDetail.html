@@ -82,6 +82,7 @@
           if (course[0]==courseId) {
             idNum++;
             //console.log(course, ind);
+            var 課程圖片Url = ( course[11] !="" )?course[11]:"picPlaceholder.png";             
             var courseDetailItem = {
               "ID": idNum,
               "課程編號": course[0],
@@ -95,7 +96,7 @@
               "其他說明": course[10],
               "報名人數": course[7],
               "繳費人數": course[8],    
-              "課程圖片": course[11],
+              "課程圖片": 課程圖片Url,
             };
             courseDetail.push(courseDetailItem);
             

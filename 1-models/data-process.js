@@ -111,7 +111,7 @@ function getCourseData(data) {
         courseData.forEach(function(item, ind, arr){
           if (course==item[0]) {
             //console.log(course, ind);
-            var 課程圖片Url = ( courseData[ind][11] !=undefined)?courseData[ind][11]:"picPlaceholder.png";
+            var 課程圖片Url = ( courseData[ind][11] !="")?courseData[ind][11]:"picPlaceholder.png";
             var courseTitle = {
               "課程編號": courseData[ind][0],              
               "課程名稱": courseData[ind][1],
@@ -178,7 +178,7 @@ function getCourseHistory(data) {
         courseHistory.forEach(function(item, ind, arr){
           if (course==item[0]) {
             //console.log(course, ind);
-            var 課程圖片Url = ( item[11] !=undefined )?item[11]:"picPlaceholder.png";            
+            var 課程圖片Url = ( item[11] !="" )?item[11]:"picPlaceholder.png";            
             var courseTitle = {
               "課程編號": item[0],              
               "課程名稱": item[1],

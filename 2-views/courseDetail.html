@@ -18,6 +18,7 @@
           <hr>
           <h3 id="與運動中心距離">與運動中心距離: </h3>
           <h3 id="課程開始時間">課程開始時間: </h3>
+          <h3 id="手機現在時間">手機現在時間: </h3>          
         </div>
     </div>
 
@@ -127,7 +128,7 @@
         
         console.log("bbb", 時間切割[0]);
         if (時間切割[0]=="24") {
-          時間切割[0] = "12";
+          時間切割[0] = "00";
         }
         
         if (時間切割[0].length<2) 時間切割[0] = "0"+時間切割[0];
@@ -175,7 +176,10 @@
         }
 
         //檢查距離
-        if ((distance > 500) && (distance1 > 500) && (distance2 > 500)) {
+        distance  = distance  || 100000; //convert NaN to a long distance
+        distance1 = distance1 || 100000;
+        distance2 = distance2 || 100000;        
+        if ((distance > 1000) && (distance1 > 1000) && (distance2 > 1000)) {
           alert("距離運動中心太遠，不可以簽到");
           return 1;
         }
@@ -255,6 +259,9 @@
                                                   + Math.floor(distance1.toString()) + ", " 
                                                   + Math.floor(distance2.toString())  );  
         $("#課程開始時間").text("課程開始時間: "+courseDateArr[0]+" 從 "+courseTimeStart+" 到 "+courseTimeEnd);
+        
+        var nowDate = new Date();
+        $("#手機現在時間").text("手機現在時間: "+nowDate.toLocaleDateString()+nowDate.toLocaleTimeString());
       }
 
     </script>

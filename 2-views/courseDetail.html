@@ -188,8 +188,10 @@
         
 //        $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs)+","+String(courseStartInMs)+","+String(courseEndInMs) );
         var nowTime         = new Date();
-        var nowTimeInMs1    = nowTime.getTime();       
-        $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs0)+","+nowTime.toISOString()+","+String(nowTimeInMs1)+","+String(courseEndTime - courseStartInMs));
+        var nowTimeInMs1    = nowTime.getTime();
+        var testTime        = new Date("2020-03-20 12:00:00");
+        var nowTimeInMs2    = testTime.getTime();        
+        $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs0)+","+nowTime.toISOString()+","+String(nowTimeInMs1)+","+String(nowTimeInMs2));
         
 //        if(nowTimeInMs < courseStartInMs){
 //          alert("未到課程日期及時間，不可以簽到");

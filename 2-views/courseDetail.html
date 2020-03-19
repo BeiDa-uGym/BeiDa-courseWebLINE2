@@ -190,13 +190,13 @@
             nowTimeInMs     = nowTime.getTime();
         $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs)+","+nowTime.toISOString());
         
-        if(nowTimeInMs < courseStartInMs){
-          alert("未到課程日期及時間，不可以簽到");
-          return 1;
-        } else if (nowTimeInMs > courseEndTime){
+//        if(nowTimeInMs < courseStartInMs){
+//          alert("未到課程日期及時間，不可以簽到");
+//          return 1;
+//        } else if (nowTimeInMs > courseEndTime){
           alert("課程日期及時間已過，不可以簽到");
-          return 1;          
-        }
+//          return 1;          
+//        }
             
             
         //檢查距離

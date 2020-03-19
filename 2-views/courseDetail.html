@@ -194,21 +194,28 @@
         //console.log("整型後", 課程日期arr, 結束時間arr, 結束時間arr);     
         
         var 整形後課程日期 = 課程日期arr[0]+"-"+課程日期arr[1]+"-"+課程日期arr[2];
-        var 整形後開始時間 = 整形後課程日期+"T"+開始時間arr[0]+":"+開始時間arr[1];
-        var 整形後結束時間 = 整形後課程日期+"T"+結束時間arr[0]+":"+結束時間arr[1];        
+        var 整形後開始時間 = 整形後課程日期+" "+開始時間arr[0]+":"+開始時間arr[1]+":00";
+        var 整形後結束時間 = 整形後課程日期+" "+結束時間arr[0]+":"+結束時間arr[1]+":00";        
         
         console.log(整形後開始時間, 整形後結束時間);
            
-        var courseStartTime = new Date(整形後開始時間);
+        //var courseStartTime = new Date(整形後開始時間); //Widows 和 Android 可以，但 iPhone 會加上 8 hrs
+        //網路解法 https://stackoverflow.com/questions/5324178/javascript-date-parsing-on-iphone
+        
+        var arr = 整形後開始時間.split(/[- :]/);
+        var courseStartTime = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);        
         var courseStartInMs = courseStartTime.getTime() - 30*60; // extend for 30 min
-        var courseEndTime   = new Date(整形後結束時間);
-        var courseEndInMs   = courseEndTime.getTime()   + 30*60; // extend for 30 min          
+        
+        //var courseEndTime   = new Date(整形後結束時間); //Widows 和 Android 可以，但 iPhone 會加上 8 hrs
+        var arr = 整形後結束時間.split(/[- :]/);
+        var courseEndTime = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);         
+        var courseEndInMs = courseEndTime.getTime()   + 30*60; // extend for 30 min          
 
         console.log(courseEndTime - courseStartInMs);
         
         var nowTime         = new Date();
         var nowTimeInMs    = nowTime.getTime();         
-        $("#手機現在時間").text("手機現在時間:"+String(nowTimeInMs)+", 課程開始時間:"+String(courseStartInMs)+", 課程開始時間:"+String(courseEndInMs) );
+        $("#手機現在時間").text("手機現在時間:"+String(nowTimeInMs)+", 課程開始時間:"+String(courseStartInMs)+", 課程結束時間:"+String(courseEndInMs) );
        
 //        $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs0)+","+nowTime.toISOString()+","+String(nowTimeInMs1)+",withT1 S: "+String(courseStartInMs)+" E:"+String(courseEndInMs));
         

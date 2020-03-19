@@ -182,18 +182,34 @@
         var 開始時間arr = courseTimeStart.split(":");
         var 結束時間arr = courseTimeEnd.split(":");    
         
-        console.log(課程日期arr, 結束時間arr, 結束時間arr);
+        console.log("整型前", 課程日期arr, 結束時間arr, 結束時間arr);
         
+        if (課程日期arr[1].length <2) 課程日期arr[1] = "0"+課程日期arr[1];
+        if (課程日期arr[2].length <2) 課程日期arr[2] = "0"+課程日期arr[2];     
+        if (開始時間arr[0].length <2) 開始時間arr[0] = "0"+開始時間arr[0];        
+        if (開始時間arr[1].length <2) 開始時間arr[1] = "0"+開始時間arr[1];   
+        if (結束時間arr[0].length <2) 結束時間arr[0] = "0"+結束時間arr[0];        
+        if (結束時間arr[1].length <2) 結束時間arr[1] = "0"+結束時間arr[1];  
         
+        console.log("整型後", 課程日期arr, 結束時間arr, 結束時間arr);     
         
+        var 整形後課程日期 = 課程日期arr[0]+"-"+課程日期arr[1]+"-"+課程日期arr[2];
+        var 整形後開始時間 = 整形後課程日期+"T"+開始時間arr[0]+":"+開始時間arr[1];
+        var 整形後結束時間 = 整形後課程日期+"T"+結束時間arr[0]+":"+結束時間arr[1];        
         
-        var courseStartTime = new Date(courseDateArr[0]+" "+courseTimeStart+":00");
+        console.log(整形後開始時間, 整形後結束時間);
+        
+//        var courseStartTime = new Date(courseDateArr[0]+" "+courseTimeStart+":00");
+//        var courseStartInMs = courseStartTime.getTime() - 30*60; // extend for 30 min
+//        var courseEndTime   = new Date(courseDateArr[0]+" "+courseTimeEnd+":00");
+//        var courseEndInMs   = courseEndTime.getTime()   - 30*60; // extend for 30 min        
+        
+        var courseStartTime = new Date(整形後開始時間);
         var courseStartInMs = courseStartTime.getTime() - 30*60; // extend for 30 min
-        var courseEndTime   = new Date(courseDateArr[0]+" "+courseTimeEnd+":00");
-        var courseEndInMs   = courseEndTime.getTime()   - 30*60; // extend for 30 min        
-        
+        var courseEndTime   = new Date(整形後結束時間);
+        var courseEndInMs   = courseEndTime.getTime()   + 30*60; // extend for 30 min          
         var nowTimeInMs0     = Date.now();
-        console.log(courseDateArr[0]+" "+courseTimeStart+":00", courseDateArr[0]+" "+courseTimeEnd+":00");
+
         console.log(courseEndTime - courseStartInMs);
         
 //        $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs)+","+String(courseStartInMs)+","+String(courseEndInMs) );
@@ -201,7 +217,7 @@
         var nowTimeInMs1    = nowTime.getTime();
         var testTime        = new Date("2020-03-20T12:00:00");
         var nowTimeInMs2    = testTime.getTime();        
-        $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs0)+","+nowTime.toISOString()+","+String(nowTimeInMs1)+",withT "+String(nowTimeInMs2));
+        $("#手機現在時間").text("手機現在時間: "+String(nowTimeInMs0)+","+nowTime.toISOString()+","+String(nowTimeInMs1)+",withT1 S: "+String(courseStartInMs)+" E:"+String(courseEndInMs));
         
 //        if(nowTimeInMs < courseStartInMs){
 //          alert("未到課程日期及時間，不可以簽到");

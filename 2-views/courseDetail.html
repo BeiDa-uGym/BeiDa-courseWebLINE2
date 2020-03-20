@@ -204,12 +204,12 @@
         
         var arr = 整形後開始時間.split(/[- :]/);
         var courseStartTime = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);        
-        var courseStartInMs = courseStartTime.getTime() - 30*60; // extend for 30 min
+        var courseStartInMs = courseStartTime.getTime() - 30*60*1000; // extend for 30 min
         
         //var courseEndTime   = new Date(整形後結束時間); //Widows 和 Android 可以，但 iPhone 會加上 8 hrs
         var arr = 整形後結束時間.split(/[- :]/);
         var courseEndTime = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);         
-        var courseEndInMs = courseEndTime.getTime()   + 30*60; // extend for 30 min          
+        var courseEndInMs = courseEndTime.getTime()     + 30*60*1000; // extend for 30 min          
 
         console.log(courseEndTime - courseStartInMs);
         

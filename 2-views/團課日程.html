@@ -300,11 +300,14 @@
       //console.log(selectedDate, typeof selectedDate);
       if ( (typeof selectedDate) == "object") {
         var selectedDateStr = kendo.toString(this.value(), 'd');
-        var selectedDate = convertDate(selectedDateStr);
+        // 英語系轉換 var selectedDate = convertDate(selectedDateStr);
+        
+        // 設為 zh-TW, 格式變成 2020/3/25 ==> 2020-3-25
+        var selectedDate = selectedDateStr.replace(/\//g, "-");
         日曆選擇的日期 = selectedDate;
         //console.log(selectedDate);
       }
-      //console.log("Change :" + selectedDate);
+      console.log("Change :" + selectedDateStr, selectedDate);
       
       所有課程展開 = true;
       $("#查看所有課程按鈕").text("查看所有課程") 

@@ -22,6 +22,8 @@
   <script src="https://kendo.cdn.telerik.com/2020.1.114/js/kendo.all.min.js"></script>
   <script src="https://kendo.cdn.telerik.com/2020.1.114/js/kendo.timezones.min.js"></script>
   
+  <script src="js/kendo.culture.zh-TW.min.js"></script>    
+  
   <link rel="stylesheet" href="css/loading.css" />
   <script src="js/loading.js"></script>    
 </head>
@@ -314,6 +316,9 @@
     var 系列課程展開 = false;
     var 日曆選擇的日期;
     var 想報名的courseId;
+    
+    console.log("Set zh-TW");
+    kendo.culture("zh-TW");    
       
     notInCourse=[];
     inCourse=[];
